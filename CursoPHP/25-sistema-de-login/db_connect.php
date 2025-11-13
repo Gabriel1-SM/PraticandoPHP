@@ -9,7 +9,7 @@ $db_name = "sistemalogin";
 $connect = mysqli_connect($servername, $username, $password, $db_name);
 
 // Verificar SE HOUVE ERRO na conexão
-if(!$connect) {
+if (!$connect) {
     echo "Falha na conexão: " . mysqli_connect_error();
 } else {
     echo "Conexão bem sucedida!";

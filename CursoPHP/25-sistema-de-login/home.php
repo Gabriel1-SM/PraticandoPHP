@@ -1,24 +1,36 @@
 <?php
-//conexão novamente do outro arquivo
 require_once 'db_connect.php';
-//sessão
 session_start();
 
-//dados
+if(!isset($_SESSION['logado'])){
+    header('Location: index.php');
+    exit();
+}
+
 $id = $_SESSION['id_usuario'];
 $sql = "SELECT * FROM usuarios WHERE id = '$id'";
 $resultado = mysqli_query($connect,$sql);
-$dados = mysqli_fetch_array($resultado);
 
+// VERIFICA SE A QUERY FUNCIONOU E TEM DADOS
+if($resultado && mysqli_num_rows($resultado) > 0) {
+    $dados = mysqli_fetch_array($resultado);
+    mysqli_close($connect);
+} else {
+    // Se não achou usuário, faz logout forçado
+    session_destroy();
+    header('Location: index.php');
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Restrita</title>
 </head>
 <body>
-    <h1>Olá <?php echo $dados['nome'];?> </h1>
+    <!-- AGORA SEGURO - $dados existe -->
+    <h1>Olá <?php echo $dados['nome']; ?> </h1>
+    <button><a href="logout.php">Sair</a></button>
 </body>
 </html>
