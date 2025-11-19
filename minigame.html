@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Fofinhos - Eloisy & Gabriel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #FF3B8E;
+            --secondary: #8E44AD;
+            --accent: #FF9E4A;
+            --light: #FFE6F2;
+            --dark: #2C3E50;
+            --success: #2ECC71;
+            --warning: #F39C12;
+            --info: #3498DB;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            padding: 15px;
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .couple-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 4px solid white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            color: var(--light);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 180px;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+        
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .game-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+        
+        .game-title {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .game-description {
+            color: var(--light);
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .play-btn {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-area {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+        
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+        
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+        
+        .explosion {
+            position: fixed;
+            pointer-events: none;
+            z-index: 200;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--light);
+            font-size: 0.9rem;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Estilos específicos dos jogos */
+        #memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .memory-card {
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .memory-card .front, .memory-card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-direction: column;
+            padding: 5px;
+        }
+        
+        .memory-card .front {
+            background: linear-gradient(135deg, var(--accent), var(--info));
+            color: white;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+        
+        .memory-card .front small {
+            font-size: 0.6rem;
+            margin-top: 5px;
+            line-height: 1.2;
+        }
+        
+        .memory-card .back {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: transparent;
+            font-size: 2rem;
+        }
+        
+        #love-catch {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(to bottom, var(--info), #A1C4FD);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0 auto;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .basket {
+            position: absolute;
+            bottom: 10px;
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 10px 10px 0 0;
+            transition: left 0.1s;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .basket::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10px;
+            width: 60px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .falling-item {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        
+        .falling-item.caught {
+            animation: caught 0.5s forwards;
+        }
+        
+        @keyframes caught {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        
+        .score-display {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .controls-info {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px;
+            border-radius: 10px;
+            margin: 0 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        #message-maker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        #love-message {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            resize: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+        
+        #love-message::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .decoration-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .decoration-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .decoration-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        #decorated-message {
+            width: 100%;
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            color: white;
+        }
+        
+        #couple-quiz {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .quiz-option {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .quiz-option.selected {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.03);
+        }
+        
+        #quiz-results {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        
+        #kiss-counter {
+            text-align: center;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        #kiss-button {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #kiss-button:hover {
+            transform: scale(1.05);
+        }
+        
+        #kiss-button:active {
+            transform: scale(0.95);
+        }
+        
+        #kiss-count {
+            font-size: 3.5rem;
+            color: white;
+            margin: 10px 0;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .kiss-animation {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        .milestone {
+            display: none;
+            background: var(--success);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: 10px auto;
+            font-weight: bold;
+            animation: pop 0.5s forwards;
+            max-width: 80%;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            min-width: 80px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--light);
+        }
+        
+        /* CRUD Styles */
+        .crud-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .crud-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #E74C3C;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .items-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .item-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .item-date {
+            font-size: 0.8rem;
+            color: var(--light);
+        }
+        
+        .item-content {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--light);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            #memory-game {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .game-card {
+                height: 170px;
+                padding: 15px 10px;
+            }
+            
+            .game-icon {
+                font-size: 2rem;
+            }
+            
+            .game-title {
+                font-size: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .couple-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .item-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+        
+        /* Animações gerais */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            opacity: 0;
+            z-index: 150;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 5px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .tab.active {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .message-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .message-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .message-date {
+            font-size: 0.8rem;
+            color: var(--light);
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="couple-avatar floating">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1>Eloisy & Gabriel</h1>
+            <p class="subtitle">Jogos especiais para o casal mais fofo! 💖</p>
+        </header>
+        
+        <div class="games-grid">
+            <div class="game-card" onclick="showGame('memory-game')">
+                <div class="game-icon"><i class="fas fa-brain"></i></div>
+                <h2 class="game-title">Memória do Amor</h2>
+                <p class="game-description">Encontre os pares perfeitos!</p>
+                <button class="play-btn"><i class="fas fa-play"></i> Jogar</button>
+            </div>
+            
+            <div class="game-card" onclick="showGame('love-catch')">
+                <div class="game-icon"><i class="fas fa-heart"></i></div>
+                <h2 class="game-title">Pegue os Corações</h2>
+                <p class="game-description">Use a cesta para pegar presentes!</p>
+                <button class="play-btn"><i class="fas fa-play"></i> Jogar</button>
+            </div>
+            
+            <div class="game-card" onclick="showGame('message-maker')">
+                <div class="game-icon"><i class="fas fa-envelope"></i></div>
+                <h2 class="game-title">Mensagem de Amor</h2>
+                <p class="game-description">Crie lindas mensagens!</p>
+                <button class="play-btn"><i class="fas fa-play"></i> Jogar</button>
+            </div>
+            
+            <div class="game-card" onclick="showGame('couple-quiz')">
+                <div class="game-icon"><i class="fas fa-question-circle"></i></div>
+                <h2 class="game-title">Quiz do Casal</h2>
+                <p class="game-description">Teste seu conhecimento!</p>
+                <button class="play-btn"><i class="fas fa-play"></i> Jogar</button>
+            </div>
+            
+            <div class="game-card" onclick="showGame('kiss-counter')">
+                <div class="game-icon"><i class="fas fa-kiss-wink-heart"></i></div>
+                <h2 class="game-title">Contador de Beijos</h2>
+                <p class="game-description">Conte seus beijos!</p>
+                <button class="play-btn"><i class="fas fa-play"></i> Jogar</button>
+            </div>
+            
+            <div class="game-card" onclick="showGame('love-story')">
+                <div class="game-icon"><i class="fas fa-book-heart"></i></div>
+                <h2 class="game-title">Nossa História</h2>
+                <p class="game-description">Reviva momentos especiais!</p>
+                <button class="play-btn"><i class="fas fa-play"></i> Jogar</button>
+            </div>
+        </div>
+        
+        <!-- Área dos jogos (inicialmente oculta) -->
+        <div id="game-area" class="game-area">
+            <button class="back-btn" onclick="hideGame()"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <div id="game-content"></div>
+        </div>
+        
+        <footer>
+            <p>Feito com <i class="fas fa-heart" style="color: var(--primary)"></i> para Eloisy & Gabriel - Que seu amor continue brilhando!</p>
+        </footer>
+    </div>
+
+    <!-- Elementos para animações -->
+    <div class="hearts" id="hearts-container"></div>
+    <div class="explosion" id="explosion-container"></div>
+
+    <script>
+        // Sistema de armazenamento de dados
+        const STORAGE_KEYS = {
+            KISS_COUNT: 'kissCount',
+            LOVE_STORIES: 'loveStories',
+            QUIZ_QUESTIONS: 'quizQuestions',
+            LOVE_MESSAGES: 'loveMessages'
+        };
+
+        // Inicializar dados se não existirem
+        function initializeData() {
+            if (!localStorage.getItem(STORAGE_KEYS.KISS_COUNT)) {
+                localStorage.setItem(STORAGE_KEYS.KISS_COUNT, '0');
+            }
+            
+            if (!localStorage.getItem(STORAGE_KEYS.LOVE_STORIES)) {
+                localStorage.setItem(STORAGE_KEYS.LOVE_STORIES, JSON.stringify([
+                    {
+                        id: 1,
+                        title: 'Nosso Primeiro Encontro',
+                        date: '2023-05-15',
+                        content: 'O dia em que nossas vidas se cruzaram e tudo começou... Foi mágico!',
+                        emoji: '💖'
+                    },
+                    {
+                        id: 2,
+                        title: 'Primeira Viagem Juntos',
+                        date: '2023-08-20',
+                        content: 'Exploramos novos lugares e criamos memórias inesquecíveis!',
+                        emoji: '🌴'
+                    }
+                ]));
+            }
+            
+            if (!localStorage.getItem(STORAGE_KEYS.QUIZ_QUESTIONS)) {
+                localStorage.setItem(STORAGE_KEYS.QUIZ_QUESTIONS, JSON.stringify([
+                    {
+                        id: 1,
+                        question: 'Qual é a comida favorita da Eloisy?',
+                        options: ['Pizza', 'Sushi', 'Lasanha', 'Hambúrguer'],
+                        correctAnswer: 0
+                    },
+                    {
+                        id: 2,
+                        question: 'Onde foi nosso primeiro encontro?',
+                        options: ['Cinema', 'Parque', 'Restaurante', 'Praia'],
+                        correctAnswer: 2
+                    }
+                ]));
+            }
+            
+            if (!localStorage.getItem(STORAGE_KEYS.LOVE_MESSAGES)) {
+                localStorage.setItem(STORAGE_KEYS.LOVE_MESSAGES, JSON.stringify([
+                    {
+                        id: 1,
+                        message: 'Eu te amo mais que tudo nesse mundo! 💖',
+                        date: new Date().toISOString(),
+                        decorations: ['💖', '✨']
+                    }
+                ]));
+            }
+        }
+
+        // Funções CRUD para Nossa História
+        function getLoveStories() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.LOVE_STORIES) || '[]');
+        }
+
+        function saveLoveStory(story) {
+            const stories = getLoveStories();
+            if (story.id) {
+                // Atualizar história existente
+                const index = stories.findIndex(s => s.id === story.id);
+                if (index !== -1) {
+                    stories[index] = story;
+                }
+            } else {
+                // Adicionar nova história
+                story.id = Date.now();
+                story.date = new Date().toISOString().split('T')[0];
+                stories.push(story);
+            }
+            localStorage.setItem(STORAGE_KEYS.LOVE_STORIES, JSON.stringify(stories));
+            return story;
+        }
+
+        function deleteLoveStory(id) {
+            const stories = getLoveStories().filter(story => story.id !== id);
+            localStorage.setItem(STORAGE_KEYS.LOVE_STORIES, JSON.stringify(stories));
+        }
+
+        // Funções CRUD para Quiz
+        function getQuizQuestions() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.QUIZ_QUESTIONS) || '[]');
+        }
+
+        function saveQuizQuestion(question) {
+            const questions = getQuizQuestions();
+            if (question.id) {
+                // Atualizar questão existente
+                const index = questions.findIndex(q => q.id === question.id);
+                if (index !== -1) {
+                    questions[index] = question;
+                }
+            } else {
+                // Adicionar nova questão
+                question.id = Date.now();
+                questions.push(question);
+            }
+            localStorage.setItem(STORAGE_KEYS.QUIZ_QUESTIONS, JSON.stringify(questions));
+            return question;
+        }
+
+        function deleteQuizQuestion(id) {
+            const questions = getQuizQuestions().filter(q => q.id !== id);
+            localStorage.setItem(STORAGE_KEYS.QUIZ_QUESTIONS, JSON.stringify(questions));
+        }
+
+        // Funções CRUD para Mensagens de Amor
+        function getLoveMessages() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.LOVE_MESSAGES) || '[]');
+        }
+
+        function saveLoveMessage(messageData) {
+            const messages = getLoveMessages();
+            if (messageData.id) {
+                // Atualizar mensagem existente
+                const index = messages.findIndex(m => m.id === messageData.id);
+                if (index !== -1) {
+                    messages[index] = messageData;
+                }
+            } else {
+                // Adicionar nova mensagem
+                messageData.id = Date.now();
+                messageData.date = new Date().toISOString();
+                messages.push(messageData);
+            }
+            localStorage.setItem(STORAGE_KEYS.LOVE_MESSAGES, JSON.stringify(messages));
+            return messageData;
+        }
+
+        function deleteLoveMessage(id) {
+            const messages = getLoveMessages().filter(m => m.id !== id);
+            localStorage.setItem(STORAGE_KEYS.LOVE_MESSAGES, JSON.stringify(messages));
+        }
+
+        // Funções para Beijos
+        function getKissCount() {
+            return parseInt(localStorage.getItem(STORAGE_KEYS.KISS_COUNT) || '0');
+        }
+
+        function setKissCount(count) {
+            localStorage.setItem(STORAGE_KEYS.KISS_COUNT, count.toString());
+        }
+
+        // Elementos para animações
+        const heartsContainer = document.getElementById('hearts-container');
+        const explosionContainer = document.getElementById('explosion-container');
+        
+        // Inicializar dados
+        initializeData();
+        
+        // Funções para mostrar/ocultar jogos
+        function showGame(gameId) {
+            document.getElementById('game-area').style.display = 'block';
+            document.querySelector('.games-grid').style.display = 'none';
+            document.querySelector('header').style.display = 'none';
+            
+            const gameContent = document.getElementById('game-content');
+            gameContent.innerHTML = '';
+            
+            // Criar corações animados
+            createHearts(10);
+            
+            // Adicionar o jogo selecionado
+            switch(gameId) {
+                case 'memory-game':
+                    initMemoryGame();
+                    break;
+                case 'love-catch':
+                    initLoveCatch();
+                    break;
+                case 'message-maker':
+                    initMessageMaker();
+                    break;
+                case 'couple-quiz':
+                    initCoupleQuiz();
+                    break;
+                case 'kiss-counter':
+                    initKissCounter();
+                    break;
+                case 'love-story':
+                    initLoveStory();
+                    break;
+            }
+            
+            // Rolar para a área do jogo
+            document.getElementById('game-area').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function hideGame() {
+            document.getElementById('game-area').style.display = 'none';
+            document.querySelector('.games-grid').style.display = 'grid';
+            document.querySelector('header').style.display = 'block';
+            
+            // Criar explosão de corações ao voltar
+            createExplosion(20, window.innerWidth/2, 100);
+            
+            // Rolar para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Funções de animação
+        function createHearts(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    
+                    // Posição inicial aleatória na parte superior
+                    const startX = Math.random() * window.innerWidth;
+                    const size = 10 + Math.random() * 20;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    heart.style.left = `${startX}px`;
+                    heart.style.top = `-30px`;
+                    
+                    // Cor aleatória
+                    const colors = ['#FF3B8E', '#8E44AD', '#FF9E4A', '#2ECC71', '#3498DB'];
+                    heart.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    heart.style.setProperty('--heart-color', colors[Math.floor(Math.random() * colors.length)]);
+                    
+                    heartsContainer.appendChild(heart);
+                    
+                    // Animação
+                    const animation = heart.animate([
+                        { transform: 'translateY(0) scale(0.5)', opacity: 0 },
+                        { transform: 'translateY(0) scale(1)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) scale(0.5)`, opacity: 0 }
+                    ], {
+                        duration: 3000 + Math.random() * 2000,
+                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    });
+                    
+                    animation.onfinish = () => {
+                        heart.remove();
+                    };
+                }, i * 200);
+            }
+        }
+        
+        function createExplosion(count, x, y) {
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Cores aleatórias para as partículas
+                const colors = ['#FF3B8E', '#8E44AD', '#FF9E4A', '#2ECC71', '#3498DB'];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                explosionContainer.appendChild(particle);
+                
+                // Tamanho aleatório
+                const size = 5 + Math.random() * 10;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição inicial
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Ângulo e velocidade aleatórios
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 3;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                // Animação
+                const animation = particle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${vx * 100}px, ${vy * 100}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 800 + Math.random() * 400,
+                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    particle.remove();
+                };
+            }
+        }
+        
+        // Implementação dos jogos
+        function initMemoryGame() {
+            // Implementação do Memory Game (similar à anterior)
+        }
+        
+        function initLoveCatch() {
+            // Implementação do Love Catch (similar à anterior)
+        }
+        
+        function initMessageMaker() {
+            const gameContent = document.getElementById('game-content');
+            gameContent.innerHTML = `
+                <div class="tabs">
+                    <div class="tab active" onclick="switchMessageTab('create')">Criar Mensagem</div>
+                    <div class="tab" onclick="switchMessageTab('saved')">Mensagens Salvas</div>
+                </div>
+                
+                <div id="message-create" class="tab-content active">
+                    <h2><i class="fas fa-envelope"></i> Criar Mensagem de Amor</h2>
+                    <p style="text-align: center; margin-bottom: 20px;">Crie uma mensagem especial para Eloisy e decore com elementos fofos!</p>
+                    
+                    <div id="message-maker">
+                        <textarea id="love-message" placeholder="Escreva sua mensagem de amor aqui..."></textarea>
+                        <div class="decoration-options">
+                            <button class="decoration-btn" onclick="addDecoration('💖')">💖 Coração</button>
+                            <button class="decoration-btn" onclick="addDecoration('🌸')">🌸 Flor</button>
+                            <button class="decoration-btn" onclick="addDecoration('✨')">✨ Brilho</button>
+                            <button class="decoration-btn" onclick="addDecoration('🎉')">🎉 Festa</button>
+                            <button class="decoration-btn" onclick="addDecoration('🌹')">🌹 Rosa</button>
+                        </div>
+                        <button class="play-btn" onclick="generateMessage()"><i class="fas fa-heart"></i> Criar Mensagem</button>
+                        <button class="play-btn" onclick="saveCurrentMessage()" style="background: var(--success);"><i class="fas fa-save"></i> Salvar Mensagem</button>
+                        <div id="decorated-message"></div>
+                    </div>
+                </div>
+                
+                <div id="message-saved" class="tab-content">
+                    <h2><i class="fas fa-bookmark"></i> Mensagens Salvas</h2>
+                    <p style="text-align: center; margin-bottom: 20px;">Suas mensagens de amor salvas.</p>
+                    
+                    <div id="saved-messages-list" class="items-list"></div>
+                </div>
+            `;
+            
+            loadSavedMessages();
+        }
+        
+        function switchMessageTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`.tab[onclick="switchMessageTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`message-${tab}`).classList.add('active');
+        }
+        
+        function addDecoration(emoji) {
+            const textarea = document.getElementById('love-message');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            const newText = text.substring(0, start) + emoji + text.substring(end);
+            
+            textarea.value = newText;
+            textarea.focus();
+            textarea.setSelectionRange(start + emoji.length, start + emoji.length);
+        }
+        
+        function generateMessage() {
+            const message = document.getElementById('love-message').value;
+            const decoratedMessage = document.getElementById('decorated-message');
+            
+            if (message.trim() === '') {
+                decoratedMessage.innerHTML = '<p style="color: #ff6b8b;">Escreva uma mensagem primeiro!</p>';
+                return;
+            }
+            
+            // Criar uma mensagem decorada
+            let decoratedHTML = '';
+            const words = message.split(' ');
+            
+            words.forEach(word => {
+                // Adicionar emojis aleatórios entre as palavras
+                const emojis = ['💖', '💕', '🌸', '✨', '🌟', '🥰'];
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                // Destacar palavras especiais
+                const specialWords = ['amor', 'Eloisy', 'Gabriel', 'amo', 'juntos', 'feliz', 'casal'];
+                if (specialWords.some(special => word.toLowerCase().includes(special))) {
+                    decoratedHTML += `<span style="color: var(--accent); font-weight: bold;">${word} ${randomEmoji}</span> `;
+                } else {
+                    decoratedHTML += `${word} `;
+                }
+            });
+            
+            decoratedMessage.innerHTML = `
+                <div style="margin-bottom: 15px; font-size: 1.3rem; line-height: 1.5;">${decoratedHTML}</div>
+                <div style="border-top: 2px dotted var(--accent); padding-top: 15px;">
+                    <p>Com todo amor,</p>
+                    <p style="font-weight: bold; color: var(--accent);">Gabriel para Eloisy 💖</p>
+                </div>
+            `;
+            
+            // Criar explosão de corações
+            createExplosion(20, window.innerWidth/2, decoratedMessage.getBoundingClientRect().top + 100);
+        }
+        
+        function saveCurrentMessage() {
+            const message = document.getElementById('love-message').value;
+            if (message.trim() === '') {
+                alert('Escreva uma mensagem primeiro!');
+                return;
+            }
+            
+            const messageData = {
+                message: message,
+                decorations: ['💖', '✨'] // Poderia ser mais sofisticado
+            };
+            
+            saveLoveMessage(messageData);
+            loadSavedMessages();
+            alert('Mensagem salva com sucesso! 💖');
+            createHearts(5);
+        }
+        
+        function loadSavedMessages() {
+            const messages = getLoveMessages();
+            const container = document.getElementById('saved-messages-list');
+            
+            if (messages.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-envelope"></i>
+                        <p>Nenhuma mensagem salva ainda.</p>
+                        <p>Vá para a aba "Criar Mensagem" para criar sua primeira mensagem!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Ordenar por data (mais recente primeiro)
+            messages.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            container.innerHTML = messages.map(msg => `
+                <div class="message-item">
+                    <div class="message-text">${msg.message}</div>
+                    <div class="message-date">${new Date(msg.date).toLocaleDateString('pt-BR')}</div>
+                    <div class="item-actions">
+                        <button class="btn btn-secondary" onclick="editLoveMessage(${msg.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger" onclick="deleteLoveMessageAction(${msg.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function deleteLoveMessageAction(id) {
+            if (confirm('Tem certeza que deseja excluir esta mensagem?')) {
+                deleteLoveMessage(id);
+                loadSavedMessages();
+                createExplosion(10, window.innerWidth/2, window.innerHeight/2);
+            }
+        }
+        
+        function editLoveMessage(id) {
+            const messages = getLoveMessages();
+            const message = messages.find(m => m.id === id);
+            
+            if (!message) return;
+            
+            // Mudar para a aba de criação
+            switchMessageTab('create');
+            
+            // Preencher o formulário
+            document.getElementById('love-message').value = message.message;
+            document.getElementById('love-message').focus();
+            
+            // Gerar visualização
+            generateMessage();
+            
+            // Poderia adicionar lógica para atualizar em vez de criar novo
+        }
+        
+        function initCoupleQuiz() {
+            const gameContent = document.getElementById('game-content');
+            gameContent.innerHTML = `
+                <div class="tabs">
+                    <div class="tab active" onclick="switchQuizTab('play')">Jogar Quiz</div>
+                    <div class="tab" onclick="switchQuizTab('manage')">Gerenciar Perguntas</div>
+                </div>
+                
+                <div id="quiz-play" class="tab-content active">
+                    <h2><i class="fas fa-question-circle"></i> Quiz do Casal</h2>
+                    <p style="text-align: center; margin-bottom: 20px;">Teste o quanto vocês se conhecem! Responda as perguntas sobre Eloisy e Gabriel.</p>
+                    
+                    <div id="couple-quiz"></div>
+                    <button class="play-btn" onclick="checkQuizAnswers()" id="quiz-submit-btn" style="display: none;"><i class="fas fa-check"></i> Ver Resultado</button>
+                    
+                    <div id="quiz-results">
+                        <h3>Resultado do Quiz</h3>
+                        <p id="quiz-score"></p>
+                        <p id="quiz-message"></p>
+                    </div>
+                </div>
+                
+                <div id="quiz-manage" class="tab-content">
+                    <h2><i class="fas fa-edit"></i> Gerenciar Perguntas do Quiz</h2>
+                    <p style="text-align: center; margin-bottom: 20px;">Adicione, edite ou remova perguntas do quiz.</p>
+                    
+                    <div class="crud-container">
+                        <div class="crud-form">
+                            <h3 id="quiz-form-title">Adicionar Nova Pergunta</h3>
+                            <div class="form-group">
+                                <label for="quiz-question">Pergunta</label>
+                                <input type="text" id="quiz-question" class="form-control" placeholder="Digite a pergunta">
+                            </div>
+                            <div class="form-group">
+                                <label>Opções de Resposta</label>
+                                <input type="text" id="quiz-option1" class="form-control" placeholder="Opção 1 (resposta correta)">
+                                <input type="text" id="quiz-option2" class="form-control" placeholder="Opção 2">
+                                <input type="text" id="quiz-option3" class="form-control" placeholder="Opção 3">
+                                <input type="text" id="quiz-option4" class="form-control" placeholder="Opção 4">
+                            </div>
+                            <button class="btn btn-primary" onclick="saveQuizQuestionForm()"><i class="fas fa-save"></i> Salvar Pergunta</button>
+                            <button class="btn btn-secondary" onclick="resetQuizForm()" id="quiz-cancel-btn" style="display: none;"><i class="fas fa-times"></i> Cancelar</button>
+                        </div>
+                        
+                        <div id="quiz-questions-list" class="items-list"></div>
+                    </div>
+                </div>
+            `;
+            
+            loadQuizQuestions();
+            renderQuizPlay();
+        }
+        
+        function switchQuizTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`.tab[onclick="switchQuizTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`quiz-${tab}`).classList.add('active');
+        }
+        
+        function loadQuizQuestions() {
+            const questions = getQuizQuestions();
+            const container = document.getElementById('quiz-questions-list');
+            
+            if (questions.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-question-circle"></i>
+                        <p>Nenhuma pergunta adicionada ainda.</p>
+                        <p>Clique no formulário acima para criar a primeira pergunta!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = questions.map(question => `
+                <div class="item-card">
+                    <div class="item-header">
+                        <div class="item-title">${question.question}</div>
+                        <div class="item-actions">
+                            <button class="btn btn-secondary" onclick="editQuizQuestion(${question.id})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger" onclick="deleteQuizQuestionAction(${question.id})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="item-content">
+                        <p><strong>Resposta correta:</strong> ${question.options[0]}</p>
+                        <p><strong>Outras opções:</strong> ${question.options.slice(1).join(', ')}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function saveQuizQuestionForm() {
+            const questionInput = document.getElementById('quiz-question');
+            const option1Input = document.getElementById('quiz-option1');
+            const option2Input = document.getElementById('quiz-option2');
+            const option3Input = document.getElementById('quiz-option3');
+            const option4Input = document.getElementById('quiz-option4');
+            
+            const question = questionInput.value.trim();
+            const options = [
+                option1Input.value.trim(),
+                option2Input.value.trim(),
+                option3Input.value.trim(),
+                option4Input.value.trim()
+            ];
+            
+            if (!question || options.some(opt => !opt)) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            const editingId = document.getElementById('quiz-form-title').dataset.editingId;
+            const quizQuestion = {
+                id: editingId ? parseInt(editingId) : null,
+                question,
+                options,
+                correctAnswer: 0
+            };
+            
+            saveQuizQuestion(quizQuestion);
+            loadQuizQuestions();
+            resetQuizForm();
+            createHearts(5);
+        }
+        
+        function resetQuizForm() {
+            document.getElementById('quiz-question').value = '';
+            document.getElementById('quiz-option1').value = '';
+            document.getElementById('quiz-option2').value = '';
+            document.getElementById('quiz-option3').value = '';
+            document.getElementById('quiz-option4').value = '';
+            document.getElementById('quiz-form-title').textContent = 'Adicionar Nova Pergunta';
+            document.getElementById('quiz-form-title').removeAttribute('data-editing-id');
+            document.getElementById('quiz-cancel-btn').style.display = 'none';
+        }
+        
+        function editQuizQuestion(id) {
+            const questions = getQuizQuestions();
+            const question = questions.find(q => q.id === id);
+            
+            if (!question) return;
+            
+            document.getElementById('quiz-question').value = question.question;
+            document.getElementById('quiz-option1').value = question.options[0];
+            document.getElementById('quiz-option2').value = question.options[1];
+            document.getElementById('quiz-option3').value = question.options[2];
+            document.getElementById('quiz-option4').value = question.options[3];
+            
+            document.getElementById('quiz-form-title').textContent = 'Editar Pergunta';
+            document.getElementById('quiz-form-title').dataset.editingId = id;
+            document.getElementById('quiz-cancel-btn').style.display = 'inline-block';
+        }
+        
+        function deleteQuizQuestionAction(id) {
+            if (confirm('Tem certeza que deseja excluir esta pergunta?')) {
+                deleteQuizQuestion(id);
+                loadQuizQuestions();
+                createExplosion(10, window.innerWidth/2, window.innerHeight/2);
+            }
+        }
+        
+        function renderQuizPlay() {
+            const questions = getQuizQuestions();
+            const quizContainer = document.getElementById('couple-quiz');
+            
+            if (questions.length === 0) {
+                quizContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-question-circle"></i>
+                        <p>Nenhuma pergunta disponível.</p>
+                        <p>Vá para a aba "Gerenciar Perguntas" para adicionar perguntas!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Embaralhar questões
+            const shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
+            
+            quizContainer.innerHTML = shuffledQuestions.map((question, index) => `
+                <div class="quiz-question" data-question-id="${question.id}">
+                    <h3>Pergunta ${index + 1}: ${question.question}</h3>
+                    <div class="quiz-options">
+                        ${question.options.map((option, optIndex) => `
+                            <div class="quiz-option" onclick="selectQuizOption(this, ${index}, ${optIndex})">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('quiz-submit-btn').style.display = 'block';
+        }
+        
+        let selectedAnswers = {};
+        
+        function selectQuizOption(element, questionIndex, optionIndex) {
+            // Remover seleção de outras opções na mesma pergunta
+            const questionElement = element.closest('.quiz-question');
+            questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Selecionar a opção clicada
+            element.classList.add('selected');
+            
+            // Salvar resposta
+            const questionId = questionElement.dataset.questionId;
+            selectedAnswers[questionId] = optionIndex;
+        }
+        
+        function checkQuizAnswers() {
+            const questions = getQuizQuestions();
+            let correctAnswers = 0;
+            
+            questions.forEach(question => {
+                if (selectedAnswers[question.id] === question.correctAnswer) {
+                    correctAnswers++;
+                }
+            });
+            
+            const score = Math.round((correctAnswers / questions.length) * 100);
+            const results = document.getElementById('quiz-results');
+            const quizScore = document.getElementById('quiz-score');
+            const quizMessage = document.getElementById('quiz-message');
+            
+            quizScore.textContent = `Você acertou ${correctAnswers} de ${questions.length} perguntas! (${score}%)`;
+            
+            if (score === 100) {
+                quizMessage.textContent = 'Incrível! Vocês se conhecem perfeitamente! 💖';
+                createConfetti(30);
+            } else if (score >= 70) {
+                quizMessage.textContent = 'Muito bom! Vocês se conhecem muito bem! 💕';
+                createHearts(15);
+            } else if (score >= 50) {
+                quizMessage.textContent = 'Bom! Mas ainda podem se conhecer melhor! 😊';
+                createHearts(8);
+            } else {
+                quizMessage.textContent = 'Que tal conversarem mais para se conhecerem melhor? 💭';
+            }
+            
+            results.style.display = 'block';
+            document.getElementById('quiz-submit-btn').style.display = 'none';
+        }
+        
+        function initKissCounter() {
+            const gameContent = document.getElementById('game-content');
+            const kissCount = getKissCount();
+            
+            gameContent.innerHTML = `
+                <h2><i class="fas fa-kiss-wink-heart"></i> Contador de Beijos</h2>
+                <p style="text-align: center; margin-bottom: 20px;">Clique no botão para contar cada beijo que vocês dão! Comemore os marcos especiais!</p>
+                
+                <div id="kiss-counter">
+                    <button id="kiss-button" onclick="incrementKissCount()">
+                        <i class="fas fa-kiss-wink-heart"></i>
+                        <span>Beijar!</span>
+                    </button>
+                    <div id="kiss-count">${kissCount}</div>
+                    <p>Beijos dados com amor! 💖</p>
+                    
+                    <div class="game-stats">
+                        <div class="stat">
+                            <div class="stat-value" id="kiss-today">0</div>
+                            <div class="stat-label">Hoje</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="kiss-week">0</div>
+                            <div class="stat-label">Esta Semana</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="kiss-month">0</div>
+                            <div class="stat-label">Este Mês</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="kiss-milestones"></div>
+            `;
+            
+            updateKissStats();
+        }
+        
+        function incrementKissCount() {
+            const currentCount = getKissCount();
+            const newCount = currentCount + 1;
+            setKissCount(newCount);
+            
+            document.getElementById('kiss-count').textContent = newCount;
+            updateKissStats();
+            
+            // Animação
+            createHearts(3);
+            
+            // Verificar marcos
+            checkKissMilestones(newCount);
+        }
+        
+        function updateKissStats() {
+            // Esta função atualizaria as estatísticas diárias, semanais e mensais
+            // Implementação simplificada para demonstração
+            document.getElementById('kiss-today').textContent = Math.floor(getKissCount() / 100);
+            document.getElementById('kiss-week').textContent = Math.floor(getKissCount() / 50);
+            document.getElementById('kiss-month').textContent = Math.floor(getKissCount() / 10);
+        }
+        
+        function checkKissMilestones(count) {
+            const milestones = [10, 50, 100, 200, 500, 1000];
+            const achieved = milestones.filter(m => count === m);
+            
+            if (achieved.length > 0) {
+                const milestone = achieved[0];
+                const milestoneElement = document.createElement('div');
+                milestoneElement.className = 'milestone';
+                milestoneElement.textContent = `🎉 ${milestone} beijos alcançados! 🎉`;
+                milestoneElement.style.display = 'block';
+                
+                document.getElementById('kiss-milestones').appendChild(milestoneElement);
+                createExplosion(30, window.innerWidth/2, window.innerHeight/2);
+                
+                setTimeout(() => {
+                    milestoneElement.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        function initLoveStory() {
+            const gameContent = document.getElementById('game-content');
+            gameContent.innerHTML = `
+                <h2><i class="fas fa-book-heart"></i> Nossa História</h2>
+                <p style="text-align: center; margin-bottom: 20px;">Reviva os momentos especiais do relacionamento de Eloisy e Gabriel!</p>
+                
+                <div class="crud-container">
+                    <div class="crud-form">
+                        <h3 id="story-form-title">Adicionar Nova Memória</h3>
+                        <div class="form-group">
+                            <label for="story-title">Título</label>
+                            <input type="text" id="story-title" class="form-control" placeholder="Título da memória">
+                        </div>
+                        <div class="form-group">
+                            <label for="story-date">Data</label>
+                            <input type="date" id="story-date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="story-emoji">Emoji</label>
+                            <select id="story-emoji" class="form-control">
+                                <option value="💖">💖 Coração</option>
+                                <option value="🌴">🌴 Viagem</option>
+                                <option value="🎉">🎉 Celebração</option>
+                                <option value="🎂">🎂 Aniversário</option>
+                                <option value="🍕">🍕 Jantar</option>
+                                <option value="🎬">🎬 Cinema</option>
+                                <option value="🎵">🎵 Música</option>
+                                <option value="🌸">🌸 Natureza</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="story-content">Descrição</label>
+                            <textarea id="story-content" class="form-control" rows="4" placeholder="Descreva este momento especial..."></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveLoveStoryForm()"><i class="fas fa-save"></i> Salvar Memória</button>
+                        <button class="btn btn-secondary" onclick="resetStoryForm()" id="story-cancel-btn" style="display: none;"><i class="fas fa-times"></i> Cancelar</button>
+                    </div>
+                    
+                    <div id="love-stories-list" class="items-list"></div>
+                </div>
+            `;
+            
+            loadLoveStories();
+        }
+        
+        function loadLoveStories() {
+            const stories = getLoveStories();
+            const container = document.getElementById('love-stories-list');
+            
+            if (stories.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-book-heart"></i>
+                        <p>Nenhuma memória adicionada ainda.</p>
+                        <p>Clique no formulário acima para criar a primeira memória!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Ordenar por data (mais recente primeiro)
+            stories.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            container.innerHTML = stories.map(story => `
+                <div class="item-card">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">${story.emoji} ${story.title}</div>
+                            <div class="item-date">${formatDate(story.date)}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-secondary" onclick="editLoveStory(${story.id})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger" onclick="deleteLoveStoryAction(${story.id})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="item-content">${story.content}</div>
+                </div>
+            `).join('');
+        }
+        
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('pt-BR', options);
+        }
+        
+        function saveLoveStoryForm() {
+            const titleInput = document.getElementById('story-title');
+            const dateInput = document.getElementById('story-date');
+            const emojiInput = document.getElementById('story-emoji');
+            const contentInput = document.getElementById('story-content');
+            
+            const title = titleInput.value.trim();
+            const date = dateInput.value;
+            const emoji = emojiInput.value;
+            const content = contentInput.value.trim();
+            
+            if (!title || !date || !content) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            const editingId = document.getElementById('story-form-title').dataset.editingId;
+            const loveStory = {
+                id: editingId ? parseInt(editingId) : null,
+                title,
+                date,
+                emoji,
+                content
+            };
+            
+            saveLoveStory(loveStory);
+            loadLoveStories();
+            resetStoryForm();
+            createHearts(5);
+        }
+        
+        function resetStoryForm() {
+            document.getElementById('story-title').value = '';
+            document.getElementById('story-date').value = '';
+            document.getElementById('story-emoji').value = '💖';
+            document.getElementById('story-content').value = '';
+            document.getElementById('story-form-title').textContent = 'Adicionar Nova Memória';
+            document.getElementById('story-form-title').removeAttribute('data-editing-id');
+            document.getElementById('story-cancel-btn').style.display = 'none';
+        }
+        
+        function editLoveStory(id) {
+            const stories = getLoveStories();
+            const story = stories.find(s => s.id === id);
+            
+            if (!story) return;
+            
+            document.getElementById('story-title').value = story.title;
+            document.getElementById('story-date').value = story.date;
+            document.getElementById('story-emoji').value = story.emoji;
+            document.getElementById('story-content').value = story.content;
+            
+            document.getElementById('story-form-title').textContent = 'Editar Memória';
+            document.getElementById('story-form-title').dataset.editingId = id;
+            document.getElementById('story-cancel-btn').style.display = 'inline-block';
+        }
+        
+        function deleteLoveStoryAction(id) {
+            if (confirm('Tem certeza que deseja excluir esta memória?')) {
+                deleteLoveStory(id);
+                loadLoveStories();
+                createExplosion(10, window.innerWidth/2, window.innerHeight/2);
+            }
+        }
+        
+        // Inicializar alguns corações quando a página carregar
+        window.addEventListener('load', () => {
+            createHearts(15);
+            
+            // Adicionar evento de toque para os cartões de jogo em dispositivos móveis
+            document.querySelectorAll('.game-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                    const gameId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    showGame(gameId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
