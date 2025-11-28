@@ -42,7 +42,7 @@ class contabancaria{
     }
 
 }
-$contabancaria1 = new contabancaria(20,null);
+$contabancaria1 = new contabancaria(20,"gabriel santana");
 echo $contabancaria1->sacar(10);
 echo $contabancaria1->getSaldo();
 echo "<br>";
