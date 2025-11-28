@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 **Índice**
+##  **Índice**
 
 1. [Introdução](#introdução)
 2. [Fase 1 – Fundamentos de POO](#fase-1--fundamentos-de-poo)
@@ -20,7 +20,7 @@
 
 ---
 
-# 🧠 **Introdução**
+# **Introdução**
 
 Este roadmap tem como objetivo guiar um desenvolvedor do **zero em PHP** até o **nível Básico de Laravel**, construindo uma base sólida e aplicando tudo em um **projeto real e completo**.
 
@@ -28,7 +28,7 @@ Este roadmap tem como objetivo guiar um desenvolvedor do **zero em PHP** até o 
 
 # 🔵 **Fase 1 – Fundamentos de POO**
 
-### 🎯 Objetivo:
+### Objetivo:
 
 Aprender os pilares fundamentais da Programação Orientada a Objetos e entender como modelar problemas reais com classes.
 
@@ -73,9 +73,9 @@ Criar um pequeno sistema 100% orientado a objetos.
 
 # 🟣 **Fase 2 – POO aplicada ao PHP Moderno**
 
-### 🎯 Objetivo:
+### Objetivo:
 
-Dominar o PHP atual, entender tipagem, tratamento de erros, Composer e padrões modernos.
+Dominar o básico PHP atual, entender tipagem, tratamento de erros, Composer e padrões modernos.
 
 ---
 
@@ -114,7 +114,7 @@ Criar um **CRUD sem framework** usando:
 
 # 🟡 **Fase 3 – Laravel Iniciante**
 
-### 🎯 Objetivo:
+### Objetivo:
 
 Entender a dinâmica do framework e criar sistemas simples com rotas, controllers e models.
 
@@ -135,7 +135,7 @@ Entender a dinâmica do framework e criar sistemas simples com rotas, controller
 
 ---
 
-### 🧪 **Mini-Projetos:**
+### **Mini-Projetos:**
 
 * CRUD básico com Eloquent
 * Upload de arquivos
@@ -145,7 +145,7 @@ Entender a dinâmica do framework e criar sistemas simples com rotas, controller
 
 # 🟠 **Fase 4 – Laravel Intermediário**
 
-### 🎯 Objetivo:
+### Objetivo:
 
 Desenvolver aplicações mais robustas, com relacionamentos e recursos internos do Laravel.
 
@@ -172,7 +172,7 @@ Desenvolver aplicações mais robustas, com relacionamentos e recursos internos 
 
 # 🔴 **Fase 5 – Laravel Avançado**
 
-### 🎯 Objetivo:
+### Objetivo:
 
 Atingir nível profissional, aprofundando arquitetura, testes e deploy.
 
@@ -192,7 +192,7 @@ Atingir nível profissional, aprofundando arquitetura, testes e deploy.
 
 ---
 
-### ☁️ Deploy
+### Deploy
 
 * Laravel Forge
 * DigitalOcean
@@ -216,13 +216,13 @@ Atingir nível profissional, aprofundando arquitetura, testes e deploy.
 
 ---
 
-# 🌟 **Projeto Completo – Sistema de Gestão de Serviços**
+# **Projeto Completo – Sistema de Gestão de Serviços**
 
 Projeto final para consolidar **todo o roadmap**.
 
 ---
 
-## 🎯 Escopo do Projeto
+## Escopo do Projeto
 
 ### **1. Autenticação**
 
