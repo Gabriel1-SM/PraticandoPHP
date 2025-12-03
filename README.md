@@ -1,6 +1,6 @@
 ---
 
-# 📝 **ROADMAP COMPLETO: PHP → POO → LARAVEL**
+#  **ROADMAP COMPLETO: PHP → POO → LARAVEL**
 
 *Desenvolvido por Gabriel Morais*
 
@@ -26,7 +26,7 @@ Este roadmap tem como objetivo guiar um desenvolvedor do **zero em PHP** até o 
 
 ---
 
-# 🔵 **Fase 1 – Fundamentos de POO**
+#  **Fase 1 – Fundamentos de POO**
 
 ### Objetivo:
 
@@ -65,13 +65,13 @@ Aprender os pilares fundamentais da Programação Orientada a Objetos e entender
 
 ---
 
-## 🔧 **Meta da fase:**
+##  **Meta da fase:**
 
 Criar um pequeno sistema 100% orientado a objetos.
 
 ---
 
-# 🟣 **Fase 2 – POO aplicada ao PHP Moderno**
+#  **Fase 2 – POO aplicada ao PHP Moderno**
 
 ### Objetivo:
 
@@ -92,7 +92,7 @@ Dominar o básico PHP atual, entender tipagem, tratamento de erros, Composer e p
 
 ---
 
-### 🌐 **Arquitetura**
+###  **Arquitetura**
 
 * MVC manual
 * Repositórios (opcional)
@@ -100,7 +100,7 @@ Dominar o básico PHP atual, entender tipagem, tratamento de erros, Composer e p
 
 ---
 
-### 🧪 **Mini-Projeto da fase:**
+###  **Mini-Projeto da fase:**
 
 Criar um **CRUD sem framework** usando:
 
@@ -112,7 +112,7 @@ Criar um **CRUD sem framework** usando:
 
 ---
 
-# 🟡 **Fase 3 – Laravel Iniciante**
+#  **Fase 3 – Laravel Iniciante**
 
 ### Objetivo:
 
@@ -143,7 +143,7 @@ Entender a dinâmica do framework e criar sistemas simples com rotas, controller
 
 ---
 
-# 🟠 **Fase 4 – Laravel Intermediário**
+#  **Fase 4 – Laravel Intermediário**
 
 ### Objetivo:
 
@@ -170,7 +170,7 @@ Desenvolver aplicações mais robustas, com relacionamentos e recursos internos 
 
 ---
 
-# 🔴 **Fase 5 – Laravel Avançado**
+#  **Fase 5 – Laravel Avançado**
 
 ### Objetivo:
 
@@ -201,7 +201,7 @@ Atingir nível profissional, aprofundando arquitetura, testes e deploy.
 
 ---
 
-# 🟢 **Fase 6 – Ecossistema Laravel**
+#  **Fase 6 – Ecossistema Laravel**
 
 ### ✔️ Ferramentas importantes
 
@@ -281,74 +281,74 @@ Endpoints:
 
 ---
 
-# 🗓️ **Checklist Diário de Estudo (15 dias)**
+#  **Checklist Diário de Estudo (15 dias)**
 
 *Perfeito para seguir como desafio pessoal.*
 
 ---
 
-## **📆 Dia 1 ✔️**
+## **Dia 1 ✔️**
 
 * Conceitos básicos de POO
 * Criar 3 classes simples
 
-## **📆 Dia 2 ✔️**
+## **Dia 2 ✔️**
 
 * Encapsulamento + herança + polimorfismo
 * Exercícios práticos
 
-## **📆 Dia 3**
+## **Dia 3**
 
 * Composer + namespaces
 * Autoload (PSR-4)
 
-## **📆 Dia 4**
+## **Dia 4**
 
 * PHP moderno (tipagem, exceptions)
 
-## **📆 Dia 5**
+## **Dia 5**
 
 * Mini-projeto: CRUD sem framework
 
-## **📆 Dia 6**
+## **Dia 6**
 
 * Instalar Laravel
 * Entender estrutura
 
-## **📆 Dia 7**
+## **Dia 7**
 
 * Rotas, controllers e views
 
-## **📆 Dia 8**
+## **Dia 8**
 
 * Models + Eloquent básico
 
-## **📆 Dia 9**
+## **Dia 9**
 
 * CRUD completo no Laravel
 
-## **📆 Dia 10**
+## **Dia 10**
 
 * Login com Breeze
 * Middleware
 
-## **📆 Dia 11**
+## **Dia 11**
 
 * Relacionamentos + filtros + paginação
 
-## **📆 Dia 12**
+## **Dia 12**
 
 * API + Resources
 
-## **📆 Dia 13**
+## **Dia 13**
 
 * Eventos, jobs, notificações
 
-## **📆 Dia 14**
+## **Dia 14**
 
 * Testes (unit + feature)
 
-## **📆 Dia 15**
+## **Dia 15**
 
 * Início do projeto final (modelagem + migrations)
 
